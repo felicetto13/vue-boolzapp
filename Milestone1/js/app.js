@@ -169,11 +169,25 @@ new Vue(
         data:
         {
             users: contatti,
+            currentUser: "",
 
         },
         methods:
         {
-            
+            currUser(user) {
+                this.currentUser.push({
+                    name: user.name,
+                    avatar: user.avatar,
+                    visible: true,
+                    messages: user.messages
+                });
+            },
+            lastMessage(userMessages) {
+                const userMess = userMessages.map((element, i, array) => {
+                    return element
+                });
+                return userMess;
+            }
         },
     }
 )

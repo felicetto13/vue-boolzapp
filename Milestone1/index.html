@@ -57,11 +57,12 @@
                 <div class="contact-list">
                     <div class="contact-list-container">
                         <div v-for="(user, i) in users" class="m-2 py-1 border-bottom">
-                            <div class="d-flex gap-3">
+                            <div class="d-flex gap-3" @click="currUser(user)">
                                 <img :src="'img/avatar' + user.avatar + '.jpg'" :alt="user.name" class="img-profile">
                                 <div class="flex-grow-1 d-flex flex-column">
                                     <span>{{ user.name }}</span>
-                                    <span class="text-black-50 fst-italic text-last-message"> {{ user.messages[(user.messages.length-1)].message }} </span>
+                                    <span class="text-black-50 fst-italic text-last-message"> {{
+                                        user.messages[(user.messages.length-1)].message }} </span>
                                 </div>
                                 <span class="text-black-50 fst-italic text-last-message">12:00</span>
                             </div>
@@ -92,6 +93,18 @@
                 <div class="chat">
                     <div class="chat-container">
                         
+                    </div>
+                </div>
+                <!-- insert new message -->
+                <div class="new-message">
+                    <div class="emoji">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                    </div>
+                    <div class="vocal-comand">
+                        <i class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
             </div>

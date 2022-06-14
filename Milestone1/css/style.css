@@ -102,3 +102,19 @@ body{
     overflow: hidden;
     background-image: url('../img/mine.jpg');
 }
+.new-message {
+    display: flex;
+    gap: 2rem;
+    background-color: var(--bs-gray-100);
+    padding: 1rem .4rem;
+    align-items: center;
+}
+.emoji, .vocal-comand {
+    flex-grow: 0;
+    padding: 0 2rem;
+    color: var(--bs-secondary);
+    font-size: 1.5rem;
+}
+textarea {
+    resize: none;
+}

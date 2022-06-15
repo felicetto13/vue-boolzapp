@@ -57,7 +57,7 @@
                 <div class="contact-list">
                     <div class="contact-list-container">
                         <div v-for="(user, i) in users" class="m-2 py-1 border-bottom">
-                            <div class="d-flex gap-3" @click="currUser(user)">
+                            <div class="d-flex gap-3" @click="currUser(i)">
                                 <img :src="'img/avatar' + user.avatar + '.jpg'" :alt="user.name" class="img-profile">
                                 <div class="flex-grow-1 d-flex flex-column">
                                     <span>{{ user.name }}</span>
@@ -77,8 +77,8 @@
                 <!-- user header -->
                 <div class="d-flex flex-shrink-0 justify-content-between align-content-center py-3 user-profile">
                     <div>
-                        <img src="img/avatar_io.jpg" alt="Sofia" class="img-profile">
-                        <span>Sofia</span>
+                        <img :src="'img/avatar' + currentUser.avatar + '.jpg'" :alt="currentUser.name" class="img-profile">
+                        <span>{{ currentUser.name }}</span>
                     </div>
                     <div class="align-self-center button-menu">
 
@@ -92,6 +92,7 @@
                 <!-- chat container -->
                 <div class="chat">
                     <div class="chat-container">
+                        <div v-for="(mess, i) in lastMessage()" :class="{'message-received align-self-start': mess.status==='received', 'message-sent align-self-end': mess.status==='sent'}">{{mess.message}}</div>
                         
                     </div>
                 </div>

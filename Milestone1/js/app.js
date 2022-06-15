@@ -169,24 +169,27 @@ new Vue(
         data:
         {
             users: contatti,
-            currentUser: "",
+            indice: 0,
+            currentUser: contatti[0],
 
         },
         methods:
         {
-            currUser(user) {
-                this.currentUser.push({
-                    name: user.name,
-                    avatar: user.avatar,
-                    visible: true,
-                    messages: user.messages
-                });
+            currUser(index) {
+                this.indice = index
+                this.currentUser = this.users[index]
             },
-            lastMessage(userMessages) {
-                const userMess = userMessages.map((element, i, array) => {
-                    return element
+            lastMessage() {
+                const userMess = this.users.filter((element, i) => {
+                    return this.indice === i;
                 });
-                return userMess;
+                let allMessage = userMess.map((elem) => {
+                    return elem.messages;
+                })
+                allMessage = allMessage[0].map((elem,i) =>{
+                    return elem
+                })
+                return allMessage;
             }
         },
     }

@@ -7,6 +7,8 @@
     --bs-info-rgb:142, 218, 251;
     --bs-light: #ffffff;
     --bs-light-rgb: 255, 255, 255;
+    --bg-received-message:#fff;
+    --bg-sent-message:#D5F9BA;
 }
 
 
@@ -102,6 +104,11 @@ body{
     overflow: hidden;
     background-image: url('../img/mine.jpg');
 }
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+}
 .new-message {
     display: flex;
     gap: 2rem;
@@ -117,4 +124,19 @@ body{
 }
 textarea {
     resize: none;
+}
+.message-sent {
+    background-color: var(--bg-sent-message);
+}
+.message-received {
+    background-color: var(--bg-received-message);
+}
+
+.message-received, .message-sent{
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+
 }

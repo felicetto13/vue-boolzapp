@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolzapp</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/css/bootstrap.min.css'
+        integrity='sha512-o/MhoRPVLExxZjCFVBsm17Pkztkzmh7Dp8k7/3JrtNCHh0AQ489kwpfA3dPSHzKDe8YCuEhxXq3Y71eb/o6amg=='
+        crossorigin='anonymous' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'
+        integrity='sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=='
+        crossorigin='anonymous' />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="top-green-bar"></div>
+    <div id="app">
+        <div class="container main-container">
+
+            <!-- //lista di tutti i contatti -->
+            <div class="sidebar">
+                <!-- user header -->
+                <div class="d-flex justify-content-between align-content-center py-3 user-profile">
+                    <div>
+                        <img src="img/avatar_io.jpg" alt="Sofia" class="img-profile">
+                        <span>Sofia</span>
+                    </div>
+                    <div class="align-self-center button-menu">
+
+                        <i class="fa-solid fa-circle-notch text-secondary"></i>
+                        <i class="fa-solid fa-message text-secondary"></i>
+                        <i class="fa-solid fa-ellipsis-vertical text-secondary"></i>
+
+                    </div>
+                </div>
+                <!-- notify update -->
+                <div class="notify-update p-3">
+                    <div class="bell-rounded"><i class="fa-solid fa-bell-slash text-cyan"></i></div>
+                    <div>
+                        <h6>Ricevi notifiche di nuovi messaggi</h6>
+                        <span class="text-secondary text-decoration-underline">Attiva notifiche desktop</span>
+                    </div>
+                </div>
+                <!-- filter reserch -->
+                <div class="filter-reserch">
+                    <div class="p-1 d-flex">
+                        <span class="py-2 px-5 bg-light border  border-1 border-opacity-75 border-dark"><i
+                                class="fa-solid fa-search text-black-50"></i></span>
+                        <input type="text" class="w-100 text-black-50" placeholder="Cerca o inizia una nuova chat...">
+                    </div>
+                </div>
+                <!-- contacts list -->
+                <div class="contact-list">
+                    <div class="contact-list-container">
+                        <div v-for="(user, i) in users" class="m-2 py-1 border-bottom">
+                            <div class="d-flex gap-3" @click="currUser(user)">
+                                <img :src="'img/avatar' + user.avatar + '.jpg'" :alt="user.name" class="img-profile">
+                                <div class="flex-grow-1 d-flex flex-column">
+                                    <span>{{ user.name }}</span>
+                                    <span class="text-black-50 fst-italic text-last-message"> {{
+                                        user.messages[(user.messages.length-1)].message }} </span>
+                                </div>
+                                <span class="text-black-50 fst-italic text-last-message">12:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- //conversazione del contatto cliccato -->
+
+            <div class="main-content">
+                <!-- user header -->
+                <div class="d-flex flex-shrink-0 justify-content-between align-content-center py-3 user-profile">
+                    <div class="d-flex gap-3">
+                        <img :src="'img/avatar' + currentUser.avatar + '.jpg'" :alt="currentUser.name"
+                            class="img-profile">
+                        <div class="d-flex flex-column">
+                            <span>{{ currentUser.name }}</span>
+                            <span class="text-black-50 fst-italic text-last-message">ultimo accesso oggi alle 12:00</span>
+                        </div>
+
+                    </div>
+                    <div class="align-self-center button-menu">
+
+                        <i class="fa-solid fa-circle-notch text-secondary"></i>
+                        <i class="fa-solid fa-message text-secondary"></i>
+                        <i class="fa-solid fa-ellipsis-vertical text-secondary"></i>
+
+                    </div>
+                </div>
+
+                <!-- chat container -->
+                <div class="chat">
+                    <div class="chat-container">
+                        <div v-for="(mess, i) in currentUser.messages"
+                            :class="{'message-received align-self-start': mess.status==='received', 'message-sent align-self-end': mess.status==='sent'}">
+                            {{mess.message}}</div>
+
+                    </div>
+                </div>
+                <!-- insert new message -->
+                <div class="new-message">
+                    <div class="emoji">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" v-model="newMessage" @keyup.enter="sendMessage"></textarea>
+                    </div>
+                    <div class="vocal-comand">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

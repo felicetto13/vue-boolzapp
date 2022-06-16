@@ -177,6 +177,7 @@ new Vue(
             searched: false,
             showM: false,
             pendingUser: "",
+            stateUser: "ultimo accesso alle " + contatti[0].messages[contatti[0].messages.length-1].date.substr(contatti[0].messages[contatti[0].messages.length-1].date.length-8,5) ,
             setAutomaticAnswere: ["Posso venire con te?","Dove andrai in vacanza?","Si, certamente farai parte del gruppo!","Quando arriverà il giorno giusto, diventerò un Web Developer!","Mangiamo a casa. Sto facendo una pizza"]
 
         },
@@ -184,6 +185,7 @@ new Vue(
         {
             currUser(user) {
                 this.currentUser = user
+                this.setState();
             },
             sendMessage() {
                 this.currentUser.messages.push(
@@ -193,9 +195,11 @@ new Vue(
                         status: "sent",
                     }
                 )
+                this.stateUser = "sta scrivendo..."
                 this.pendingUser = this.currentUser;
                 setTimeout(this.automaticAnswere, 1000)
                 this.newMessage = "";
+                
             },
             automaticAnswere() {
                 this.pendingUser.messages.push(
@@ -204,6 +208,7 @@ new Vue(
                         message: this.setAutomaticAnswere[Math.floor(Math.random() * this.setAutomaticAnswere.length)],
                         status: "received",
                     })
+                    this.changeStateUser();
             },
             filteredUser() {
                 if (this.userReserching != "") {
@@ -232,6 +237,14 @@ new Vue(
                 this.indice = null;
                 this.showM = false
             },
+            changeStateUser(){
+                this.stateUser= "Online"
+                setTimeout( this.setState, 3000)
+            },
+            setState(){
+                const num =this.currentUser.messages[this.currentUser.messages.length-1].date.substr(this.currentUser.messages[this.currentUser.messages.length-1].date.length-8,5)
+                this.stateUser = "ultimo accesso alle " + num
+            }
             
             
 

@@ -88,8 +88,7 @@
                             class="img-profile">
                         <div class="d-flex flex-column">
                             <span>{{ currentUser.name }}</span>
-                            <span class="text-black-50 fst-italic text-last-message">ultimo accesso il {{currentUser.messages[currentUser.messages.length-1].date.substr(0,10)}} alle
-                                {{currentUser.messages[currentUser.messages.length-1].date.substr(currentUser.messages[currentUser.messages.length-1].date.length-8,5)}}</span>
+                            <span class="text-black-50 fst-italic text-last-message">{{ stateUser }}</span>
                         </div>
 
                     </div>
@@ -134,7 +133,7 @@
                             @keyup.enter="sendMessage"></textarea>
                     </div>
                     <div class="vocal-comand">
-                        <i v-if="newMessage != ''" class="fa-solid fa-paper-plane"></i>
+                        <i v-if="newMessage != ''" class="fa-solid fa-paper-plane" @click="sendMessage"></i>
                         <i v-else  class="fa-solid fa-microphone"></i>
                         
                     </div>

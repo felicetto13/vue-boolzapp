@@ -134,7 +134,9 @@
                             @keyup.enter="sendMessage"></textarea>
                     </div>
                     <div class="vocal-comand">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i v-if="newMessage != ''" class="fa-solid fa-paper-plane"></i>
+                        <i v-else  class="fa-solid fa-microphone"></i>
+                        
                     </div>
                 </div>
             </div>

@@ -176,6 +176,7 @@ new Vue(
             filterUser: contatti,
             searched: false,
             showM: false,
+            pendingUser: "",
 
         },
         methods:
@@ -191,11 +192,12 @@ new Vue(
                         status: "sent",
                     }
                 )
+                this.pendingUser = this.currentUser;
                 setTimeout(this.automaticAnswere, 1000)
                 this.newMessage = "";
             },
             automaticAnswere() {
-                this.currentUser.messages.push(
+                this.pendingUser.messages.push(
                     {
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         message: "Ok!",
